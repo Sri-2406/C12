@@ -1,0 +1,58 @@
+{% extends 'new/base.html' %}
+{% load static %}
+
+
+	
+	{% block content %}
+	<body class="index">
+	<div>
+		<div style="background-color: #e9ecef;">
+		<a class="navbar-brand text-dark" style="margin-left: 30px;" href="{% url 'apredict' %}">Enter Details</a>
+		<a class="navbar-brand text-dark" style="margin-left: 1088px;" href="{% url 'feedback' %}">Feedback</a>
+	</div><br>
+	<h1 style="text-align:center; color:cyan;"><b>BRAIN STROKE PREDICTION </b></h1>
+     <!-- Main Input For Receiving Query to our ML -->
+
+	 <form class="form1 container1" action="{% url 'predict' %}" style="background-color: transparent; box-sizing: border-box;
+	 font-family: proxima_nova_rgregular, Helvetica, Arial, sans-serif;" method="POST">
+	 {% csrf_token %}
+		 <fieldset class="fieldset1">
+			 <legend class="legend1">Enter the Detail</legend>
+
+	 <label class="white"  for="">GENDER</label>
+	 <input type="number" class="space form-control" step="0.01" name="gender" placeholder="Press 1 Male 2 Female" required="required" /><br><br>
+
+	 <label class="white"  for="">AGE</label>
+	 <input type="number" class="space form-control" step="0.01" name="age" placeholder="AGE" required="required" /><br><br>
+
+	 <label class="white"  for="">HYPERTENSION</label>
+	 <input type="number" class="space form-control" step="0.01" name="hypertension" placeholder="HYPERTENSION" required="required" /><br><br>
+
+	 <label class="white"  for="">HEART DISEASE</label>
+	 <input type="number" class="space form-control" step="0.01" name="heart_disease" placeholder="HEART DISEASE" required="required" /><br><br>
+
+	 <label class="white"  for="">AVERAGE GLUCOSE LEVEL</label>
+	 <input type="number" class="space form-control" step="0.01" name="avg_glucose_level" placeholder="AVERAGE GLUCOSE LEVEL" required="required" /><br><br>
+
+	 <label class="white"  for="">BMI</label>
+	 <input type="number" class="space form-control" step="0.01" name="bmi" placeholder="BMI" required="required" /><br><br>
+
+	 <label class="white"  for="">SMOKING STATUS</label>
+	 <input type="number" class="space form-control" step="0.01" name="smoking_status" placeholder="SMOKING STATUS" required="required" /><br><br>
+
+	 <input type="hidden" name="stroke" value="data">
+	 <input class="input1" type="submit" value="Submit"><br>
+		 </fieldset>
+	 </form>
+
+
+   <br>
+   <br>
+<div  style="background:skyblue;padding:2% 40%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+ {% endblock content %}
+</body>
+</html>
