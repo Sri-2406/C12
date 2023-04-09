@@ -1,0 +1,58 @@
+{% extends 'new/base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div>
+		<div style="background-color: #e9ecef;">
+		    <a class="navbar-brand text-dark" style="margin-left: 30px;" href="{% url 'details_all' %}">All</a>
+		    <a class="navbar-brand text-dark" style="margin-left: 10px;" href="{% url 'details_last' %}">Last</a>
+	    </div>
+        <br>
+        <center>
+        <div class="feed_table">
+            <table class="table" border="default" style="table-layout: fixed;">
+            <tr>
+                <th>Gender</th><th>Age</th><th>Hypertension</th>
+                <th>Heartdisease</th><th>avg_glucose_level</th><th>bmi</th>
+                <th>smoking_status</th>
+                <th>stroke</th>>
+            </tr>
+                <tr>
+                    <td>{{model.gender}}</td><td>{{model.age}}</td>
+                    <td>{{model.hypertension}}</td><td>{{model.heart_disease}}</td>
+                    <td>{{model.avg_glucose_level}}</td>
+                    <td>{{model.bmi}}</td><td>{{model.smoking_status}}</td>
+                    <td>{{model.stroke}}</td>
+                </tr>    
+            </table>
+        </div>
+        </center>
+        <br><br>
+        <div>
+        <center>
+            <form action="{% url 'details_last' %}" method="POST">
+                {% csrf_token %}
+                {% for f in form %}
+                <p>
+                    {{ f.label_tag }}<br>
+                    {{ f }}
+                    
+                </p>
+                {% endfor %}
+                <br>
+            
+                {% if not msg %}
+                    <input type="submit">
+                {% else %}
+                    {{msg}}
+                {% endif %}
+            
+            </form>
+        </center>
+        </div>
+        
+        
+{% endblock content %}
+</body>
+</html>
